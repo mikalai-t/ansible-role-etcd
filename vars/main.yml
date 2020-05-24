@@ -1,0 +1,23 @@
+---
+# file: vars/main.yml
+
+__etcd_download_url: "https://github.com/etcd-io/etcd/releases/download/{{ etcd_version }}/etcd-{{ etcd_version }}-linux-amd64.tar.gz"
+
+__etcd_user: etcd
+__etcd_group: etcd
+
+__etcd_binary: /usr/local/bin/etcd
+__etcd_listen_peer_port: 2380
+__etcd_listen_client_port: 2379
+
+__etcd_service: etcd
+__etcd_service_systemd_dir: /etc/systemd/system/
+__etcd_service_systemd_unit: "{{ __etcd_service_systemd_dir }}/{{ __etcd_service }}.service"
+
+__etcd_config_dir: /etc/etcd
+__etcd_pki_dir: "{{ __etcd_config_dir }}/pki"
+__etcd_pki_ca_cert: "{{ __etcd_pki_dir }}/ca.crt"
+__etcd_pki_tls_cert: "{{ __etcd_pki_dir }}/etcd.crt"
+__etcd_pki_tls_key: "{{ __etcd_pki_dir }}/etcd.key"
+
+__etcd_data_dir: /var/lib/etcd

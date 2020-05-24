@@ -1,0 +1,13 @@
+---
+
+etcd_version: v3.4.0
+
+etcd_node_name: ""
+etcd_node_private_ip: ""
+
+etcd_ca_cert: ""
+etcd_tls_cert: ""
+etcd_tls_key: ""
+
+etcd_initial_cluster_member_names: ""
+etcd_initial_cluster_member_ips: ""

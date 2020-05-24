@@ -1,0 +1,11 @@
+---
+
+- name: "01.1 - set cluster variable combining ip list and ports"
+  set_fact:
+    # we need to get a string value, like:
+    #   "master-0=http://10.0.0.1:2380,master-1=http://10.0.0.2:2380"
+    _etcd_initial_cluster_members: "{{ (((etcd_initial_cluster_member_names.split(',') | product(['https://']) | map('join', '=') | list) | product(etcd_initial_cluster_member_ips.split(',')) | map('join', '') | list) | product([__etcd_listen_peer_port]) | map('join', ':') | list) | join(',') }}"
+
+- name: "01.2 - print debug info"
+  debug:
+    var: _etcd_initial_cluster_members
