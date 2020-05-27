@@ -1,6 +1,12 @@
 ---
 
-- name: "02.1 - download and install etcd"
+- name: "02.1 - install prerequisites"
+  apt:
+    name: "{{ __etcd_prerequisite_packages|select()|list }}"
+    state: present
+  become: yes
+
+- name: "02.2 - download and install etcd"
   unarchive:
     src: "{{ __etcd_download_url }}"
     dest: "{{ __etcd_binary | dirname }}"
@@ -11,5 +17,5 @@
     group: "{{ __etcd_group }}"
     mode: "0755"
     extra_opts:
-      - "--transform='s/.*\///'"
+      - "-j"
   become: yes

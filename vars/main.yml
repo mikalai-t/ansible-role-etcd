@@ -1,5 +1,7 @@
 ---
-# file: vars/main.yml
+
+__etcd_prerequisite_packages:
+  - unzip
 
 __etcd_download_url: "https://github.com/etcd-io/etcd/releases/download/{{ etcd_version }}/etcd-{{ etcd_version }}-linux-amd64.tar.gz"
 
