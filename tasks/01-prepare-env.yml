@@ -4,7 +4,7 @@
   set_fact:
     # we need to get a string value, like:
     #   "master-0=http://10.0.0.1:2380,master-1=http://10.0.0.2:2380"
-    _etcd_initial_cluster_members: "{{ _etcd_initial_cluster_members|default('') + item.0 + '=https://' + item.1 + ':' + __etcd_listen_peer_port + (ansible_loop.last | ternary('', ',')) }}"
+    _etcd_initial_cluster_members: "{{ _etcd_initial_cluster_members|default('') + item.0 + '=https://' + item.1 + ':' + __etcd_listen_peer_port|string + (ansible_loop.last | ternary('', ',')) }}"
   loop: "{{ etcd_initial_cluster_member_names.split(',')|zip(etcd_initial_cluster_member_ips.split(','))|list }}"
   loop_control:
     extended: yes
