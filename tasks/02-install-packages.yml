@@ -1,1 +1,15 @@
 ---
+
+- name: "02.1 - download and install etcd"
+  unarchive:
+    src: "{{ __etcd_download_url }}"
+    dest: "{{ __etcd_binary | dirname }}"
+    keep_newer: yes
+    remote_src: yes
+    validate_certs: yes
+    owner: "{{ __etcd_user }}"
+    group: "{{ __etcd_group }}"
+    mode: "0755"
+    extra_opts:
+      - "--transform='s/.*\///'"
+  become: yes
