@@ -1,21 +1,28 @@
 ---
 
-- name: "02.1 - install prerequisites"
-  apt:
-    name: "{{ __etcd_prerequisite_packages|select()|list }}"
-    state: present
-  become: yes
+- name: "02.1 - download etcd archive"
+  get_url:
+    url: "{{ __etcd_download_url }}"
+    dest: "{{ lookup('env', 'HOME') }}/etcd-${etcd_version}.tar.gz"
 
-- name: "02.2 - download and install etcd"
-  unarchive:
-    src: "{{ __etcd_download_url }}"
-    dest: "{{ __etcd_binary | dirname }}"
-    keep_newer: yes
+- name: "02.2 - unpack etcd archive"
+  shell:
+    cmd: "tar -xf {{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }}.tar.gz -C {{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }} --strip-components=1"
+  args:
+    warn: no
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+
+- name: "02.3 - install etcd binaries"
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     remote_src: yes
-    validate_certs: yes
     owner: "{{ __etcd_user }}"
     group: "{{ __etcd_group }}"
     mode: "0755"
-    extra_opts:
-      - "-j"
-  become: yes
+  loop:
+    - src: "{{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }}/etcd"
+      dest: "{{ __etcd_binary }}"
+    - src: "{{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }}/etcdctl"
+      dest: "{{ __etcd_client_binary }}"

@@ -1,6 +1,6 @@
 ---
 
-etcd_version: v3.4.0
+etcd_version: v3.4.9
 
 etcd_node_name: ""
 etcd_node_private_ip: ""

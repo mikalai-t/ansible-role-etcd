@@ -1,14 +1,13 @@
 ---
 
-__etcd_prerequisite_packages:
-  - unzip
-
-__etcd_download_url: "https://github.com/etcd-io/etcd/releases/download/{{ etcd_version }}/etcd-{{ etcd_version }}-linux-amd64.tar.gz"
+__etcd_download_url: "https://storage.googleapis.com/etcd/{{ etcd_version }}/etcd-{{ etcd_version }}-linux-amd64.tar.gz"
 
 __etcd_user: etcd
 __etcd_group: etcd
 
-__etcd_binary: /usr/local/bin/etcd
+__etcd_install_dir: /usr/local/bin
+__etcd_binary: "{{ __etcd_install_dir }}/etcd"
+__etcd_client_binary: "{{ __etcd_install_dir }}/etcdctl"
 __etcd_listen_peer_port: 2380
 __etcd_listen_client_port: 2379
 
