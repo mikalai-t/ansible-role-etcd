@@ -5,7 +5,12 @@
     url: "{{ __etcd_download_url }}"
     dest: "{{ lookup('env', 'HOME') }}/etcd-${etcd_version}.tar.gz"
 
-- name: "02.2 - unpack etcd archive"
+- name: "02.2.1 - make sure directory for etcd unpacked files is created"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }}"
+    state: directory
+
+- name: "02.2.2 - unpack etcd archive"
   shell:
     cmd: "tar -xzf {{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }}.tar.gz -C {{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }} --strip-components=1"
   args:
