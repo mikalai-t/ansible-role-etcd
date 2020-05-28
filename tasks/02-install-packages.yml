@@ -7,7 +7,7 @@
 
 - name: "02.2 - unpack etcd archive"
   shell:
-    cmd: "tar -xf {{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }}.tar.gz -C {{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }} --strip-components=1"
+    cmd: "tar -xzf {{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }}.tar.gz -C {{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }} --strip-components=1"
   args:
     warn: no
   environment:
