@@ -12,7 +12,7 @@ __etcd_listen_peer_port: 2380
 __etcd_listen_client_port: 2379
 
 __etcd_service: etcd
-__etcd_service_systemd_dir: /etc/systemd/system/
+__etcd_service_systemd_dir: /lib/systemd/system
 __etcd_service_systemd_unit: "{{ __etcd_service_systemd_dir }}/{{ __etcd_service }}.service"
 
 __etcd_config_dir: /etc/etcd
