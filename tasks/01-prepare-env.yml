@@ -42,4 +42,5 @@
   become: yes
   loop:
     - "{{ __etcd_config_dir }}"
+    - "{{ __etcd_pki_dir }}"
     - "{{ __etcd_data_dir }}"
