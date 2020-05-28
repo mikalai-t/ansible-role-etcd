@@ -17,6 +17,7 @@
     warn: no
   environment:
     DEBIAN_FRONTEND: noninteractive
+  become: yes
 
 - name: "02.3 - install etcd binaries"
   copy:
@@ -26,6 +27,7 @@
     owner: "{{ __etcd_user }}"
     group: "{{ __etcd_group }}"
     mode: "0755"
+  become: yes
   loop:
     - src: "{{ lookup('env', 'HOME') }}/etcd-{{ etcd_version }}/etcd"
       dest: "{{ __etcd_binary }}"

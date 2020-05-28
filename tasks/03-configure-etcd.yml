@@ -1,1 +1,26 @@
 ---
+
+- name: "03.1 - place all the pki data into appropriate place"
+  copy:
+    content: "{{ item.content }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ __etcd_user }}"
+    group: "{{ __etcd_group }}"
+    mode: "ug=rwX,o-rwx"
+  become: yes
+  loop:
+    - content: "{{ etcd_ca_cert }}"
+      dest: "{{ __etcd_pki_ca_cert }}"
+    - content: "{{ etcd_tls_cert }}"
+      dest: "{{ __etcd_pki_tls_cert }}"
+    - content: "{{ etcd_tls_key }}"
+      dest: "{{ __etcd_pki_tls_key }}"
+
+- name: "03.2 - template etcd systemd unit"
+  template:
+    src: etcd.tpl.service
+    dest: "{{ __etcd_service_systemd_unit }}"
+  become: yes
+  notify:
+    - etcd-reload-systemd
+    - etcd-restart-service

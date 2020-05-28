@@ -1,5 +1,4 @@
 ---
-# file: tasks/main.yml
 
 - include_tasks: 01-prepare-env.yml
 
@@ -7,9 +6,9 @@
 
 - include_tasks: 03-configure-etcd.yml
 
-#- name: "0.5.(service) - make sure OpenSSH server is started"
-#  service:
-#    name: "{{ __openssh_service }}"
-#    state: started
-#    enabled: yes
-#  become: yes
+- name: "0.4 - make sure etcd service is started"
+  service:
+    name: "{{ __etcd_service }}"
+    state: started
+    enabled: yes
+  become: yes

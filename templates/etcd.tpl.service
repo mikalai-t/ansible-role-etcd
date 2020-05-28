@@ -2,7 +2,7 @@
 [Unit]
 Description=etcd key-value store
 Documentation=https://github.com/etcd-io/etcd
-After=network.target
+After=network.target network-online.target
 Wants=network-online.target
 
 [Service]
@@ -36,3 +36,4 @@ LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
+Alias=etcd.service
