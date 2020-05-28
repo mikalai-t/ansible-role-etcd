@@ -20,7 +20,7 @@ ExecStart={{ __etcd_binary }} \
     --peer-trusted-ca-file={{ __etcd_pki_ca_cert }} \
     --peer-client-cert-auth \
     --client-cert-auth \
-    --listen-peer-urls https://{{ etcd_node_private_ip }):{{ __etcd_listen_peer_port }} \
+    --listen-peer-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_peer_port }} \
     --listen-client-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_client_port }},https://127.0.0.1:{{ __etcd_listen_client_port }} \
     --advertise-client-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_client_port }} \
     --initial-advertise-peer-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_peer_port }} \
