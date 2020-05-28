@@ -23,12 +23,12 @@ ExecStart={{ __etcd_binary }} \
     --listen-peer-urls https://{{ etcd_node_private_ip }):{{ __etcd_listen_peer_port }} \
     --listen-client-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_client_port }},https://127.0.0.1:{{ __etcd_listen_client_port }} \
     --advertise-client-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_client_port }} \
-    --initial-advertise-peer-urls https://{{ etcd_node_private_ip }):{{ __etcd_listen_peer_port }} \
+    --initial-advertise-peer-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_peer_port }} \
     --initial-cluster-token etcd-cluster-0 \
     --initial-cluster {{ _etcd_initial_cluster }} \
     --initial-cluster-state new
-TimeoutSec=600
-StartLimitInterval=0
+TimeoutStartSec=600
+TimeoutStopSec=60
 Restart=always
 RestartSec=10s
 KillMode=process

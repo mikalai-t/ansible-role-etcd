@@ -8,6 +8,7 @@
     group: "{{ __etcd_group }}"
     mode: "ug=rwX,o-rwx"
   become: yes
+  no_log: yes
   loop:
     - content: "{{ etcd_ca_cert }}"
       dest: "{{ __etcd_pki_ca_cert }}"
