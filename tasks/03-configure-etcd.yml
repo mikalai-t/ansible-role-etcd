@@ -25,3 +25,5 @@
   notify:
     - etcd-reload-systemd
     - etcd-restart-service
+
+- meta: flush_handlers
