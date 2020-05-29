@@ -9,14 +9,23 @@
   loop_control:
     extended: yes
 
-- name: "01.2.1 - add system group for etcd"
+- name: "01.2 - make sure base play directory exists and world writable"
+  file:
+    path: "{{ __etcd_play_dir }}"
+    state: directory
+    owner: 0
+    group: 0
+    mode: "a=rwX"
+  become: yes
+
+- name: "01.3.1 - add system group for etcd"
   group:
     name: "{{ __etcd_group }}"
     state: present
     system: yes
   become: yes
 
-- name: "01.2.2 - add system user for etcd"
+- name: "01.3.2 - add system user for etcd"
   user:
     name: "{{ __etcd_user }}"
     system: yes
@@ -28,7 +37,7 @@
     remove: yes
   become: yes
 
-- name: "01.3 - make sure etcd config and data directories exist"
+- name: "01.4 - make sure etcd config and data directories exist"
   file:
     path: "{{ item }}"
     state: directory
