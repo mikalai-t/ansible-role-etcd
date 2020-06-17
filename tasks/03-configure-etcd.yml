@@ -20,7 +20,7 @@
 
 - name: "03.2 - template etcd systemd unit"
   template:
-    src: etcd.tpl.service
+    src: etcd.service
     dest: "{{ __etcd_service_systemd_unit }}"
   become: yes
   notify:
