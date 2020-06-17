@@ -30,7 +30,7 @@
     name: "{{ __etcd_user }}"
     system: yes
     group: "{{ __etcd_group }}"
-    home: "{{ __etcd_data_dir }}"
+    home: "{{ __etcd_config_dir }}"
     shell: /usr/sbin/nologin
     state: present
     force: yes

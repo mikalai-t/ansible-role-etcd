@@ -12,7 +12,7 @@ Type=notify
 #   * https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/configuration.md
 ExecStart={{ __etcd_binary }} \
     --advertise-client-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_client_port }} \
-    --cert-file={{ __etcd_pki_tls_cert }} \
+    --cert-file={{ __etcd_pki_server_cert_file }} \
     --client-cert-auth \
     --data-dir={{ __etcd_data_dir }} \
     --election-timeout=5000 \
@@ -21,17 +21,17 @@ ExecStart={{ __etcd_binary }} \
     --initial-cluster {{ _etcd_initial_cluster }} \
     --initial-cluster-state new \
     --initial-cluster-token etcd-cluster-0 \
-    --key-file={{ __etcd_pki_tls_key }} \
+    --key-file={{ __etcd_pki_server_key_file }} \
     --listen-client-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_client_port }},https://127.0.0.1:{{ __etcd_listen_client_port }} \
     --listen-peer-urls https://{{ etcd_node_private_ip }}:{{ __etcd_listen_peer_port }} \
     --logger=zap \
     --log-level="warn" \
     --name={{ etcd_node_name }} \
-    --peer-cert-file={{ __etcd_pki_tls_cert }} \
+    --peer-cert-file={{ __etcd_pki_peer_cert_file }} \
     --peer-client-cert-auth \
-    --peer-key-file={{ __etcd_pki_tls_key }} \
-    --peer-trusted-ca-file={{ __etcd_pki_ca_cert }} \
-    --trusted-ca-file={{ __etcd_pki_ca_cert }}
+    --peer-key-file={{ __etcd_pki_peer_key_file }} \
+    --peer-trusted-ca-file={{ __etcd_pki_ca_cert_file }} \
+    --trusted-ca-file={{ __etcd_pki_ca_cert_file }}
 TimeoutStartSec=600
 TimeoutStopSec=60
 Restart=always
