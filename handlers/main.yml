@@ -1,4 +1,5 @@
 ---
+# The handlers are executed in the order they are written in the handlers file, not the order they are notified!
 
 - name: "etcd-reload-systemd"
   shell:

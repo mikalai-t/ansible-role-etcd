@@ -21,6 +21,8 @@
       dest: "{{ __etcd_pki_peer_cert_file }}"
     - content: "{{ etcd_peer_key }}"
       dest: "{{ __etcd_pki_peer_key_file }}"
+  notify:
+    - etcd-restart-service
 
 - name: "03.2 - template etcd systemd unit"
   template:

@@ -2,11 +2,11 @@
 
 etcd_version: v3.4.9
 
-etcd_node_name: ""
-etcd_node_private_ip: ""
+etcd_node_name: "{{ ansible_hostname }}"
+etcd_node_private_ip: "{{ ansible_default_ipv4.address | default(ansible_all_ipv4_addresses[0]) }}"
 
-etcd_initial_cluster_member_names: ""
-etcd_initial_cluster_member_ips: ""
+etcd_initial_cluster_member_names: "{{ ansible_hostname }}"
+etcd_initial_cluster_member_ips: "127.0.0.1"
 
 etcd_ca_cert: ""
 etcd_server_cert: ""

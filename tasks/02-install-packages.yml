@@ -35,3 +35,5 @@
       dest: "{{ __etcd_binary }}"
     - src: "{{ __etcd_play_dir }}/etcd-{{ etcd_version }}/etcdctl"
       dest: "{{ __etcd_client_binary }}"
+  notify:
+    - etcd-restart-service
