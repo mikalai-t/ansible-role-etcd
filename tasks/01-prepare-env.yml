@@ -43,7 +43,8 @@
     state: directory
     owner: "{{ __etcd_user }}"
     group: "{{ __etcd_group }}"
-    mode: "ug=rwX,o-rwx"
+    # since 3.4.10 it's required the 'data' directory must have '0700' permissions
+    mode: "u=rwX,go-rwx"
   become: yes
   loop:
     - "{{ __etcd_config_dir }}"

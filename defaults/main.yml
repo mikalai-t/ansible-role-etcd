@@ -1,6 +1,6 @@
 ---
 
-etcd_version: v3.4.9
+etcd_version: v3.4.10
 
 etcd_node_name: "{{ ansible_hostname }}"
 etcd_node_private_ip: "{{ ansible_default_ipv4.address | default(ansible_all_ipv4_addresses[0]) }}"
